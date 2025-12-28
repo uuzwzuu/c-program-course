@@ -1,6 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+int find_min(int n, int arr[])
+{
+    int curr_min = arr[0];
+
+    for (int i = 1; i < n; ++i)
+    {
+        int a = arr[i];
+
+        if (a < curr_min) { curr_min = a; }
+    }
+
+    return curr_min;
+}
+
 int find_max(int n, int arr[])
 {
     int curr_max = arr[0];
@@ -24,27 +38,28 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    if (argc > 21)
-    {
-        printf("Don't input more than 20 integers!\n");
-        return 1;
-    }
 
-    int arr[] =
-    {
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0
-    };
-    
-    for (int i=1; i<argc; ++i)
-    {
-        arr[i-1] = atoi(argv[i]);
-    }
     int n = argc - 1;
 
-    int s = find_max(n, arr);
+
+    int *arr1 = (int *) malloc(4 * n);
+    
+    for (int i=0; i<n; ++i)
+    {
+        arr1[i] = atoi(argv[i+1]);
+    }
+
+    int s = find_max(n, arr1);
 
     printf("The max value is: %d\n", s);
+
+    int x = find_min(n, arr1);
+    
+    printf("The min value is: %d\n", x);
+
+    free(arr1);
+
+    arr1 = NULL;
 
     return 0;
 }
