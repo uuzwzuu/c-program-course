@@ -1,22 +1,18 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-float compound(int amount, float rate, int years)
+double compound(int amount, double rate, int years)
 {
-    float current = 0;
-    float compound = 0;
+    double current = 0;
+    double compound = 0;
 
     for (int i=0; i < years; ++i)
     {
         // the current amount = new deposit + compound
         current = compound + amount;
 
-
         compound = current * (1 + rate);
-
-
     }
-
 
     return compound;
 }
@@ -32,13 +28,13 @@ int main(int argc, char *argv[])
     }
 
     int amount = atoi(argv[1]);
-    float rate = atof(argv[2]);
+    double rate = atof(argv[2]);
     int years  = atoi(argv[3]);
 
     printf("your input are: %d %f %d\n", amount, rate , years );
 
 
-    float total = compound (amount, rate, years);
+    double total = compound (amount, rate, years);
     printf("Totally you will get: $%f\n", total);
 
     return 0;
