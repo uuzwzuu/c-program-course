@@ -16,27 +16,56 @@ int fibonacci(int n)
         arr[i] = arr[i-1] + arr[i-2];
     }
 
-    return arr[n];
+    int s = arr[n];
+
+    //release memory
+    free(arr);
+    arr = NULL;
+
+    return s;
 }
 
 int main(int argc, char *argv[])
 {
-    printf("Which Fibonacci number do you want to know?\n");
-
-    int n;
-    scanf("%d", &n);
-
-    printf("Your input is: %d\n", n);
-
-    if (n < 0)
+    while (1 > 0)
     {
-        printf("Please input an interger >= 0.\n");
-        return 1;
+        printf("Which Fibonacci number do you want to know?\n");
+
+        int n;
+        scanf("%d", &n);
+
+        printf("Your input is: %d\n", n);
+
+        if (n < 0)
+        {
+            printf("Please input an interger >= 0.\n");
+            return 1;
+        }
+
+        int a = fibonacci(n);
+
+        printf("The %d-th fibonacci number is: %d\n", n, a);
+
+        printf("Do you want to continue? Y/N\n");
+
+        char c;
+        scanf(" %c", &c);
+
+        if (c == 'Y')
+        {
+            printf("Good, let's continue!\n");
+        }
+        else if (c == 'N')
+        {
+            printf("Goodbye\n");
+            break;
+        }
+        else
+        {
+            printf("Sorry, I don't understand your input goodbye\n");
+            break;
+        }
     }
-
-    int a = fibonacci(n);
-
-    printf("The %d-th fibonacci number is: %d\n", n, a);
 
     return 0;
 }
