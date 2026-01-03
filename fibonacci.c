@@ -34,8 +34,6 @@ int main(int argc, char *argv[])
         int n;
         scanf("%d", &n);
 
-        printf("Your input is: %d\n", n);
-
         if (n < 0)
         {
             printf("Please input an interger >= 0.\n");
@@ -44,7 +42,7 @@ int main(int argc, char *argv[])
 
         int a = fibonacci(n);
 
-        printf("The %d-th fibonacci number is: %d\n", n, a);
+        printf("The %d-th Fibonacci number is: %d\n", n, a);
 
         printf("Do you want to continue? Y/N\n");
 
@@ -57,12 +55,12 @@ int main(int argc, char *argv[])
         }
         else if (c == 'N')
         {
-            printf("Goodbye\n");
+            printf("Goodbye!\n");
             break;
         }
         else
         {
-            printf("Sorry, I don't understand your input goodbye\n");
+            printf("Sorry, I don't understand your input. Goodbye!\n");
             break;
         }
     }
