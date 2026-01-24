@@ -2,6 +2,24 @@
 #include<stdlib.h>
 #include<string.h>
 
+int format_print(int a[], int len, int max_len)
+{
+    // if a[] = [3,4,5], which means the number is 543,
+    // len = 3; max_len = 10;
+    // the format and print result: "          543".
+    char buffer[8];
+    sprintf(buffer, "%%%dd", max_len - len + 1);
+    printf(buffer, a[len-1]);
+
+    for (int i=len-2; i>=0; --i)
+    {
+        printf("%d",a[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
 int add(int a[], int len1, int b[], int len2, int r[], int len3)
 {
     int *p = (int *) malloc(len3 * 4);
@@ -50,7 +68,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-
     int length1 = strlen(argv[1]);
     int *a = (int *) malloc(length1 * 4);
    
@@ -59,7 +76,6 @@ int main(int argc, char *argv[])
         a[i] = argv[1][length1-1-i] - '0';
         //printf("a[%d]=%d\n", i, a[i]);
     }
-
 
     int length2 = strlen(argv[2]);
     int *b = (int *) malloc(length2 * 4);
@@ -70,20 +86,22 @@ int main(int argc, char *argv[])
         //printf("b[%d]=%d\n", i, b[i]);
     }
 
-
-    printf("%d,%d\n", length1, length2);
-
+    printf("The calculation:\n");
 
     int length3 = (length1 > length2)? length1+1: length2+1;
 
     int *r = (int *) malloc(length3 * 4);
     add(a, length1, b, length2, r, length3);
-
-    for (int i = length3 - 1; i >= 0; --i)
+    
+    format_print(a, length1, length3+1);
+    printf("+");
+    format_print(b, length2, length3);
+    for (int i=0; i<=length3; ++i)
     {
-        printf("%d", r[i]);
+        printf("-");
     }
     printf("\n");
+    format_print(r, length3, length3+1);
 
     free(a); a = NULL;
     free(b); b = NULL;
