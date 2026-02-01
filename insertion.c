@@ -7,7 +7,7 @@ int array_insert(int * b, int len, int y)
     //insert y into array b[]
 
     // 1. find the location (index i)
-    int j = 0;
+    int j = len-1;
     for(int i=0; i<len; ++i)
     {
         if(b[i] > y)
@@ -17,7 +17,7 @@ int array_insert(int * b, int len, int y)
         }
     } 
 
-    // 2. copy b[i],b[i+1],.... to the right
+    // 2. copy b[j],b[j+1],.... to the right
     for(int i=len-2; i>=j; --i)
     {
         b[i+1] = b[i];
@@ -25,6 +25,17 @@ int array_insert(int * b, int len, int y)
 
     // 3. b[j] = y;
     b[j] = y;
+
+    return 0;
+}
+
+int print_array(int *a, int len)
+{
+    for (int i=0; i<len; ++i)
+    {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
 
     return 0;
 }
@@ -52,7 +63,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    printf("Total Number: %d\n", comma_count);
+    //printf("Total Number: %d\n", comma_count);
 
     int length = comma_count +1;
     int *a = (int *) malloc((length+1) * 4);
@@ -68,21 +79,17 @@ int main(int argc, char *argv[])
             j += 1;
         }
     }
+    
+    printf("Before Insertion\n");
 
-    for (int i=0; i<length+1; ++i)
-    {
-        printf("%d ", a[i]);
-    }
-    printf("\n");
+    print_array(a, length+1);
 
     int x = atoi(argv[2]);
     array_insert(a, length+1, x);
 
-    for (int i=0; i<length+1; ++i)
-    {
-        printf("%d ", a[i]);
-    }
-    printf("\n");
+    printf("After Insertion\n");
+
+    print_array(a, length+1);
 
 
     free(a); a = NULL;
