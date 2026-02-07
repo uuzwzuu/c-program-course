@@ -2,6 +2,24 @@
 #include<stdlib.h>
 #include<string.h>
 
+int min_value_location(int *a, int len)
+{
+    int j=0;
+    int m=a[0];
+    for(int i=0; i<len; ++i)
+    {
+        if (a[i]<m)
+        {
+            m=a[i];
+            j=i;
+        }
+    }
+    printf("The min value is %d\n", m);
+    printf("The index is %d\n", j);
+
+    return 0;
+}
+
 int print_array(int *a, int len)
 {
     for (int i=0; i<len; ++i)
@@ -43,7 +61,7 @@ int main(int argc, char *argv[])
     }
 
     print_array(a, length+1);
-
+    min_value_location(a, length);
     return 0;
 }
 
