@@ -2,6 +2,17 @@
 #include<stdlib.h>
 #include<string.h>
 
+int print_array(int *a, int len)
+{
+    for (int i=0; i<len; ++i)
+    {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
 int min_value_location(int *a, int len)
 {
     int j=0;
@@ -14,25 +25,26 @@ int min_value_location(int *a, int len)
             j=i;
         }
     }
-    printf("The min value is %d\n", m);
-    printf("The index is %d\n", j);
+   // printf("The min value is %d\n", m);
+   // printf("The index is %d\n", j);
 
-    return 0;
-}
+    int x=a[0];
+    a[0]=m;
+    a[j]=x;
 
-int print_array(int *a, int len)
-{
-    for (int i=0; i<len; ++i)
-    {
-        printf("%d ", a[i]);
-    }
-    printf("\n");
+    //print_array(a, len);
 
     return 0;
 }
 
 int main(int argc, char *argv[])
 {
+
+    if (argc < 2)
+    {
+        printf("Please input a comma-separated array and a number!\n");
+        return 1;
+    }
     int n = strlen(argv[1]);
     int comma_count = 0;
     for (int i=0; i<n; ++i)
@@ -46,7 +58,7 @@ int main(int argc, char *argv[])
     //printf("Total Number: %d\n", comma_count);
 
     int length = comma_count +1;
-    int *a = (int *) malloc((length+1) * 4);
+    int *a = (int *) malloc(length * 4);
 
     a[0] = atoi(&argv[1][0]);
     int j = 1;
@@ -60,8 +72,15 @@ int main(int argc, char *argv[])
         }
     }
 
-    print_array(a, length+1);
-    min_value_location(a, length);
+    print_array(a, length);
+    
+    for(int i=0; i<length-1; ++i)
+    {
+        min_value_location(a+i, length-i);
+    }
+
+    print_array(a, length);
+
     return 0;
 }
 
