@@ -14,17 +14,22 @@ int print_file(char * filename)
 
     char buf[255];
 
-    
-    
+       
     char * p=fgets(buf,sizeof(buf),fp);
+
     while(p!=NULL)
     {
-        printf("%s",buf);
-
+        char * token=strtok(buf, ",");
+        while(token!=NULL)
+        {
+            int val=atoi(token);
+            printf("%d ",val);
+            token=strtok(NULL,",");
+        }
+        printf("\n");
         p=fgets(buf,sizeof(buf),fp);
     }
     printf("finished reading the file!\n");
-    
 
     fclose(fp);
     return 0;
