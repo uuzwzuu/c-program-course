@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void print2(int *arr, int n, int factor)
+void print2(int *arr, int n)
 {
     for (int i=0; i<n; ++i)
     {
@@ -9,7 +9,7 @@ void print2(int *arr, int n, int factor)
 
         if(i%2 == 1)
         {
-            printf("%d ", arr[i]*factor);
+            printf("%d ", arr[i]);
         }
     }
     printf("\n");
