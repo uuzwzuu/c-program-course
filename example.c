@@ -1,6 +1,18 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+void print3(int *arr, int n, int factor)
+{
+    for (int i=0; i<n; ++i)
+    {
+        if(i%3 == 2)
+        {
+            printf("%d ", arr[i]*factor);
+        }
+    }
+    printf("\n");
+}
+
 int main(int argc, char * argv[])
 {
     if (argc < 2)
@@ -18,25 +30,8 @@ int main(int argc, char * argv[])
         arr[i] = atoi(argv[i+1]);
     }
 
-    for (int i=0; i<n; ++i)
-    {
-        if(i%3 == 2)
-        {
-            printf("%d ", arr[i]);
-        }
-    }
-    printf("\n");
-    
-    for (int i=0; i<n; ++i)
-    {
-        if(i%3 == 2)
-        {
-            printf("%d ", arr[i]*3);
-        }
-    }
-    printf("\n");
-
-
+    print3(arr, n, 1);
+    print3(arr, n, 3);    
 
     free(arr);
     arr = NULL;
