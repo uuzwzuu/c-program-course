@@ -32,7 +32,7 @@ int main(int argc, char * argv[])
         arr[i] = atoi(argv[i+1]);
     }
 
-    print2(arr, n, 1);
+    print2(arr, n);
 
     free(arr);
     arr = NULL;
