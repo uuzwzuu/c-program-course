@@ -6,6 +6,7 @@ void print2(int *arr, int n, int factor)
     for (int i=0; i<n; ++i)
     {
         if(arr[i]%5 == 0) break;
+
         if(i%2 == 1)
         {
             printf("%d ", arr[i]*factor);
