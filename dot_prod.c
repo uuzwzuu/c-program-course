@@ -6,9 +6,12 @@
 int contra(int *va, int la, int *vb, int lb)
 {
     int total = 0;
+
     int x;
+
+    int len = la < lb? la : lb;
  
-    for(int i=0; i<lb; ++i)
+    for(int i=0; i<len; ++i)
     {
         x = va[i] * vb[i];
 
@@ -16,6 +19,24 @@ int contra(int *va, int la, int *vb, int lb)
     }
     
     return total;
+}
+
+int get_vector (int *v, char *buf)
+{
+
+     int len = 0;
+
+     char * token=strtok(buf, ",\n");
+
+     while(token!=NULL)
+     {
+         v[len] = atoi(token);
+         len += 1;
+
+         token=strtok(NULL,",\n");
+     }
+
+    return len;
 }
 
 int read_file(char * filename)
@@ -32,43 +53,27 @@ int read_file(char * filename)
 
     // 1
     char * p = fgets(buf,sizeof(buf),fp);
-
-    int va[100];
-    int la = 0;
-
-    char * token=strtok(buf, ",\n");
-
-    while(token!=NULL)
+    while (p != NULL)
     {
-        va[la] = atoi(token);
-        la += 1;
-
-        token=strtok(NULL,",\n");
-    }
     
-    printf("First vector, %d elements:\n", la);
-    print_array(va, la);
+         int va[100];
+         int la = get_vector(va, buf);
+         print_array(va, la);
 
     //2
-    p = fgets(buf,sizeof(buf),fp);
+         p = fgets(buf,sizeof(buf),fp);
+         
+         if (p == NULL) break;
 
-    int vb[100];
-    int lb = 0;
+         int vb[100];
+         int lb = get_vector(vb, buf);
+         print_array(vb, lb);
 
-    token=strtok(buf, ",\n");
+         int result = contra(va, la, vb, lb);
+         printf("The inner product is %d\n", result);
 
-    while(token!=NULL)
-    {
-        vb[lb] = atoi(token);
-        lb += 1;
-
-        token=strtok(NULL,",\n");
+         p = fgets(buf, sizeof(buf),fp);
     }
-
-    printf("Second vector, %d elements:\n", lb);
-    print_array(vb, lb);
-    int result = contra(va, la, vb, lb);
-    printf("The dot product is %d\n", result);
     fclose(fp);
     return 0;
 
