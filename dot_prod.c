@@ -5,9 +5,17 @@
 
 int contra(int *va, int la, int *vb, int lb)
 {
+    int total = 0;
+    int x;
+ 
+    for(int i=0; i<lb; ++i)
+    {
+        x = va[i] * vb[i];
 
-    result = 0;
-    return result;
+        total = total + x;
+    }
+    
+    return total;
 }
 
 int read_file(char * filename)
@@ -59,6 +67,8 @@ int read_file(char * filename)
 
     printf("Second vector, %d elements:\n", lb);
     print_array(vb, lb);
+    int result = contra(va, la, vb, lb);
+    printf("The dot product is %d\n", result);
     fclose(fp);
     return 0;
 
