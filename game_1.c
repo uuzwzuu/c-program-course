@@ -3,15 +3,25 @@
 
 void draw(int x, int y, int mx, int my)
 {
+    int arrx[]={x,x,x,x};
+    int arry[]={y,y+1,y+2,y+3};
+
     for(int i = 0; i < my; ++i)
     {
         for(int j = 0; j < mx; ++j)
         {
-            if(i == y && j == x)
+            int match = 0;
+            for(int k = 0; k < 4; ++k)
             {
-                printf(" ");
+                if(i == arry[k] && j == arrx[k])
+                {
+                    printf(" ");
+                    match = 1;
+                    break;
+                } 
             }
-            else
+
+            if (match == 0) 
             {
                 printf("*");
             }
@@ -51,7 +61,7 @@ int main(int argc, char *argv[])
         }       
         else if(w == 's')
         {
-            if(y < my - 1) y++;
+            if(y < my - 4) y++;
         }        
         else if(w == 'd')
         {
