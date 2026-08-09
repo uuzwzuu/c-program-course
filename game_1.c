@@ -43,19 +43,19 @@ int main(int argc, char *argv[])
         
         if(w == 'w')
         {
-            y = y - 1;
+            if(y > 0) y--;
         }
         else if(w == 'a')
         {
-            x = x - 1;
+            if(x > 0) x--;
         }       
         else if(w == 's')
         {
-            y = y + 1;
+            if(y < my - 1) y++;
         }        
         else if(w == 'd')
         {
-            x = x + 1;
+            if(x < mx - 1) x++;
         }
     }
 
