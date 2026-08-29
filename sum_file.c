@@ -2,6 +2,24 @@
 #include<stdlib.h>
 #include<string.h>
 
+
+int tok_sum(char * buf)
+{
+    int sum = 0;
+
+    char delims[] = ",";
+
+    char * token = strtok(buf, delims);
+
+    while(token != NULL)
+    {
+        int x = atoi(token);
+        sum = sum + x;
+        token = strtok(NULL, delims);
+    }
+    return sum;
+}
+
 int main(int argc, char *argv[])
 {
     if(argc != 2)
@@ -20,38 +38,14 @@ int main(int argc, char *argv[])
     }
 
     char buf[100];
-    char * p = fgets(buf, 100, fp);
+    char * p = fgets(buf, sizeof(buf), fp);
 
-    if(p != NULL)
+    while(p != NULL)
     {
-        printf("%s\n", buf);
-    }
-    else
-    {
-        printf("reading error.\n");
-        fclose(fp);
-        return 3;
-    }
-
-    char delims[] = ",";
-
-    int sum;
-
-    int y = 0;
-
-    char * token = strtok(buf, delims);
-
-    while(token != NULL)
-    {
-        int x = atoi(token);
-        y = y + 1;
-        sum = sum + x;
-        token = strtok(NULL, delims);
-    }
-
-    printf("count: %d\n", y);
-
-    printf("sum: %d\n", sum);
+        int sum = tok_sum(buf);  //count
+        printf("sum: %d\n", sum);  //print
+        p = fgets(buf, sizeof(buf), fp);  //read next row
+    }    
 
     fclose(fp);
 
