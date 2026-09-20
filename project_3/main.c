@@ -3,13 +3,21 @@
 
 int main(int argc, char *argv[])
 {
-    int x = 5;
+    int arr[5] = {6, 2, 9, 8, 1};
 
-    int y = 3;
+    for(int i = 0; i < 4; ++i)
+    {
+        int idx = min_idx(arr, i, 5-i);
+        swap(&arr[i], &arr[idx]);
+    }
 
-    printf("%d, %d\n", x,y);
+    for(int i = 0; i < 5; ++i)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 
-    swap(&x,&y);
-
-    printf("%d, %d\n", x,y);
+    return 0;
 }
+
+

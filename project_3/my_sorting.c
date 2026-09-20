@@ -8,3 +8,19 @@ void swap(int *x, int *y)
 
     *y = t;
 }
+
+int min_idx(int *arr, int start, int len)
+{
+    int m = arr[start];
+    int idx = start;
+
+    for(int i = start; i < start + len; ++i)
+    {
+        if(m > arr[i])
+        {
+            m = arr[i];
+            idx = i;
+        }
+    }
+    return idx;
+}
