@@ -6,4 +6,6 @@ void swap(int *x,int *y);
 
 int min_idx(int *arr, int start, int len);
 
+void bubble_sort(int *arr, int len); 
+
 #endif

@@ -24,3 +24,12 @@ int min_idx(int *arr, int start, int len)
     }
     return idx;
 }
+
+void bubble_sort(int *arr, int len)
+{
+    for(int i = 0; i < len; ++i)
+    {
+        int idx = min_idx(arr, i, len-i);
+        swap(&arr[i], &arr[idx]);
+    }
+}
