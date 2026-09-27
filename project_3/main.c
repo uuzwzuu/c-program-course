@@ -19,12 +19,12 @@ int main(int argc, char *argv[])
         return 2;
     }
 
-    char buf[100];
+    char buf[10000];
     char * p = fgets(buf, sizeof(buf), fp);
 
     while(p != NULL)
     {
-        int arr[100];
+        int arr[10000];
         int len = buf2arr(buf, arr);
         print_array(arr, len);
         bubble_sort(arr, len);
