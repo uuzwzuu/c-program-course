@@ -4,5 +4,7 @@
 
 void print_array(int *arr, int len);
 
+int buf2arr(char * buf, int * arr);
+
 #endif
 

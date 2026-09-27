@@ -4,13 +4,36 @@
 
 int main(int argc, char *argv[])
 {
-    int arr[5] = {6, 2, 9, 8, 1};
+    if(argc != 2)
+    {
+        printf("init error!\n");
+        return 1;
+    }
 
-    print_array(arr, 5);
+    char * filename = argv[1];
+    FILE * fp = fopen(filename, "r");
 
-    bubble_sort(arr, 5);
+    if(fp == NULL)
+    {
+        printf("File %s not found.\n", filename);
+        return 2;
+    }
 
-    print_array(arr, 5);
+    char buf[100];
+    char * p = fgets(buf, sizeof(buf), fp);
+
+    while(p != NULL)
+    {
+        int arr[100];
+        int len = buf2arr(buf, arr);
+        print_array(arr, len);
+        bubble_sort(arr, len);
+        print_array(arr, len);
+        printf("len = %d\n", len);
+        p = fgets(buf, sizeof(buf), fp);
+    }
+
+    fclose(fp);
 
     return 0;
 }
