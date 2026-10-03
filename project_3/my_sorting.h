@@ -8,4 +8,8 @@ int min_idx(int *arr, int start, int len);
 
 void bubble_sort(int *arr, int len); 
 
+void sweep(int *arr, int len);
+
+void exchange_sort(int *arr, int len);
+
 #endif

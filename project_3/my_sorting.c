@@ -33,3 +33,22 @@ void bubble_sort(int *arr, int len)
         swap(&arr[i], &arr[idx]);
     }
 }
+
+void sweep(int *arr, int len)
+{
+    for(int i = 0; i < len - 1; ++i)
+    {
+        if(arr[i] > arr[i+1])
+        {
+            swap(&arr[i], &arr[i+1]);
+        }
+    }
+}
+
+void exchange_sort(int *arr, int len)
+{
+    for(int i = 0; i < len - 1; ++i)
+    {
+        sweep(arr, len - i);
+    }
+}
