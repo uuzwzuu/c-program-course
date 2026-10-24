@@ -3,7 +3,7 @@
 
 void swap(char *x, char *y)
 {
-    int t = *x;
+    char t = *x;
     *x = *y;
     *y = t;
 }
